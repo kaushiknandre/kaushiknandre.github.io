@@ -1,0 +1,33 @@
+
+        .header{
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: rgb(167, 156, 232);
+        }
+        .footer{
+            background-color: burlywood;
+            color: rgb(220, 20, 20);
+        }
+        .container{
+            margin:0px;
+        }
+        {
+            margin:0px;
+
+        }
+
+        .menu{
+            display: flex;
+        }
+
+        .menu li{
+            list-style: none;
+            margin: 5px;
+        }
+
+        .menu li a{
+            text-decoration: none;
+            color: white;
+            
+        }
