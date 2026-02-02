@@ -1,0 +1,10 @@
+db.users.insertOne({
+    name:"John Smith",
+    email:"johngmail.com",
+    department:"IT",
+    salary:1456,
+    location:["FL","OH"],
+    date:Date()
+    
+})
+db.employees.find()
