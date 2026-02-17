@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💖</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffd6e8, #ffeef5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card {
+  background: white;
+  width: 420px;
+  padding: 40px;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.emoji {
+  font-size: 64px;
+}
+
+h1 {
+  margin: 20px 0 30px;
+}
+
+.buttons {
+  position: relative;
+  height: 120px;
+}
+
+button {
+  padding: 14px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  position: absolute;
+  transition: transform 0.15s ease;
+}
+
+#yes {
+  background: #ff4d88;
+  color: white;
+  left: 80px;
+  top: 40px;
+}
+
+#no {
+  background: #eee;
+  color: #333;
+  left: 220px;
+  top: 40px;
+}
+
+.clone {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Hearts */
+.heart {
+  position: fixed;
+  font-size: 18px;
+  pointer-events: none;
+  animation: float 1s linear forwards;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: red;
+  animation: fall 2s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+  <div class="emoji">🐱💖</div>
+  <h1>Poopu will you be my valentine?</h1>
+
+  <div class="buttons">
+    <button id="yes">Yes</button>
+    <button id="no">No</button>
+  </div>
+</div>
+
+<script>
+const card = document.getElementById("card");
+const yesBtn = document.getElementById("yes");
+const buttonsBox = document.querySelector(".buttons");
+
+/* Create multiple NO buttons */
+const noButtons = [];
+
+function createNo(x, y, isReal = false) {
+  const btn = document.createElement("button");
+  btn.innerText = "No";
+  btn.style.left = x + "px";
+  btn.style.top = y + "px";
+  btn.style.position = "absolute";
+  btn.style.background = "#eee";
+  btn.style.color = "#333";
+  btn.style.borderRadius = "30px";
+  btn.style.padding = "14px 30px";
+  btn.style.fontSize = "18px";
+
+  btn.addEventListener("click", e => e.preventDefault());
+  btn.addEventListener("touchstart", e => e.preventDefault());
+
+  buttonsBox.appendChild(btn);
+  noButtons.push(btn);
+}
+
+/* One real + two fake */
+createNo(40, 40, true);
+createNo(200, 40);
+createNo(120, 80);
+
+/* Dodge logic */
+function dodge(btn, x, y) {
+  const btnRect = btn.getBoundingClientRect();
+  const cardRect = card.getBoundingClientRect();
+
+  const bx = btnRect.left + btnRect.width / 2;
+  const by = btnRect.top + btnRect.height / 2;
+
+  const dist = Math.hypot(x - bx, y - by);
+
+  if (dist < 130) {
+    const angle = Math.atan2(by - y, bx - x);
+    const speed = 25 + (130 - dist);
+
+    let newLeft = btn.offsetLeft + Math.cos(angle) * speed;
+    let newTop = btn.offsetTop + Math.sin(angle) * speed;
+
+    const maxLeft = card.clientWidth - btn.offsetWidth;
+    const maxTop = card.clientHeight - btn.offsetHeight;
+
+    btn.style.left = Math.max(0, Math.min(newLeft, maxLeft)) + "px";
+    btn.style.top = Math.max(0, Math.min(newTop, maxTop)) + "px";
+  }
+}
+
+/* Mouse */
+card.addEventListener("mousemove", e => {
+  noButtons.forEach(btn => dodge(btn, e.clientX, e.clientY));
+  heart(e.clientX, e.clientY);
+});
+
+/* Touch */
+card.addEventListener("touchmove", e => {
+  const t = e.touches[0];
+  noButtons.forEach(btn => dodge(btn, t.clientX, t.clientY));
+  heart(t.clientX, t.clientY);
+});
+
+/* Heart trail */
+function heart(x, y) {
+  const h = document.createElement("div");
+  h.innerText = "❤️";
+  h.style.position = "fixed";
+  h.style.left = x + "px";
+  h.style.top = y + "px";
+  h.style.pointerEvents = "none";
+  h.style.animation = "fade 1s linear";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 1000);
+}
+
+/* Confetti */
+function confetti() {
+  for (let i = 0; i < 120; i++) {
+    const c = document.createElement("div");
+    c.style.position = "fixed";
+    c.style.width = "8px";
+    c.style.height = "8px";
+    c.style.left = Math.random() * innerWidth + "px";
+    c.style.top = "-10px";
+    c.style.background = `hsl(${Math.random()*360},100%,70%)`;
+    c.style.animation = "fall 2s linear";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 2000);
+  }
+}
+
+yesBtn.addEventListener("click", () => {
+  confetti();
+  setTimeout(() => alert("YAY 💖 Add your message here 😍"), 300);
+});
+</script>
+
+</body>
+</html>
