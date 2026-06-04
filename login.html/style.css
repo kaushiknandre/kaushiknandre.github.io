@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #4e73df, #224abe);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 370px;
+    height: 520px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.form-box {
+    width: 200%;
+    display: flex;
+    transition: 0.5s ease-in-out;
+}
+
+.form {
+    width: 50%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+input {
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.primary-btn {
+    margin-top: 10px;
+    padding: 10px;
+    background: #1e73be;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    background: #1558a6;
+}
+
+.forgot {
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #1e73be;
+}
+
+.divider {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 14px;
+    color: #777;
+}
+
+.social-btn {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.facebook {
+    background: #3b5998;
+}
+
+.google {
+    background: #db4437;
+}
+
+.social-btn:hover {
+    opacity: 0.9;
+}
+
+p {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.switch {
+    color: #1e73be;
+    cursor: pointer;
+    font-weight: bold;
+}

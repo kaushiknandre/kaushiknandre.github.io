@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login & Signup</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="form-box">
+
+        <!-- Login Form -->
+        <div class="form login-form">
+            <h2>Login</h2>
+
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <a href="#" class="forgot">Forgot password?</a>
+            <button class="primary-btn">Login</button>
+
+            <p>Don't have an account?
+                <span class="switch" id="showSignup">Signup</span>
+            </p>
+
+            <div class="divider">Or</div>
+
+            <button class="social-btn facebook">
+                <i class="fab fa-facebook-f"></i> Login with Facebook
+            </button>
+
+            <button class="social-btn google">
+                <i class="fab fa-google"></i> Login with Google
+            </button>
+        </div>
+
+        <!-- Signup Form -->
+        <div class="form signup-form">
+            <h2>Signup</h2>
+
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Create password">
+            <input type="password" placeholder="Confirm password">
+            <button class="primary-btn">Signup</button>
+
+            <p>Already have an account?
+                <span class="switch" id="showLogin">Login</span>
+            </p>
+
+            <div class="divider">Or</div>
+
+            <button class="social-btn facebook">
+                <i class="fab fa-facebook-f"></i> Signup with Facebook
+            </button>
+
+            <button class="social-btn google">
+                <i class="fab fa-google"></i> Signup with Google
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
